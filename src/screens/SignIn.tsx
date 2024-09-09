@@ -1,8 +1,10 @@
 import { FcGoogle } from "react-icons/fc";
 import { RiLoginBoxLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
+import { auth, GoogleProvider } from "../config/firebase"
 import * as yup from "yup";
 
 type FormData = {
@@ -24,9 +26,25 @@ const SignIn = () => {
     resolver: yupResolver(schema),
   });
 
-  const handleFormSubmission = (data: FormData) => {
-    console.log(data);
+  const navigate = useNavigate();
+
+  const handleFormSubmission = async (data: FormData) => {
+    const { email, password } = data;
+    try {
+     const user =  await signInWithEmailAndPassword(auth, email, password);
+          navigate("/");
+        }
+    catch (err) {
+      console.error(err);
+    }
   };
+
+
+  const signInWithGoogle = async () => {
+    const result = await signInWithPopup(auth, GoogleProvider);
+    console.log(result)
+    navigate("/");
+  }
 
   return (
     <div className="sign-in">
@@ -48,7 +66,7 @@ const SignIn = () => {
         {errors && <p>{errors.password?.message}</p>}
         <button>Sign In</button>
       </form>
-      <button className="signInWithGoogleBtn">
+      <button className="signInWithGoogleBtn" onClick={signInWithGoogle}>
         Sign In With Google <FcGoogle style={{ marginLeft: "5px" }} />
       </button>
 
