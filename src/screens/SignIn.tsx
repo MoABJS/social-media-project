@@ -31,7 +31,7 @@ const SignIn = () => {
   const handleFormSubmission = async (data: FormData) => {
     const { email, password } = data;
     try {
-     const user =  await signInWithEmailAndPassword(auth, email, password);
+     await signInWithEmailAndPassword(auth, email, password);
           navigate("/");
         }
     catch (err) {

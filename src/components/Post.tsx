@@ -1,33 +1,27 @@
-// import {
-//   collection,
-//   getDocs,
-//   addDoc,
-//   query,
-//   where,
-//   doc,
-//   deleteDoc,
-// } from "firebase/firestore";
-// import { auth, db } from "../config/firebase";
-// import { useAuthState } from "react-firebase-hooks/auth";
-// import { useEffect, useState } from "react";
-// import { SlLike } from "react-icons/sl";
-// import { SlDislike } from "react-icons/sl";
+import { CgProfile } from "react-icons/cg";
+import { Posts } from "../screens/Home";
 
-// const Post = () => {
+interface Props {
+    post: Posts;
+}
+
+const Post = (props: Props) => {
+    const { post } = props;
 
 
 
 
-//   return (
-//     <div className="post">
-//       <div className="header"></div>
-//       <div className="message"></div>
-//       <div className="footer">
-//         <SlLike />
-//         <SlDislike />
-//       </div>
-//     </div>
-//   );
-// };
+  return (
+    <div className="post">
+      <div className="header">
+        { (post.photoLink == null)? <CgProfile style={{width: "20", height: "20", margin: "0"}}/> : <img src={post.photoLink} width="20" height="20"/>}
+        <p>{ post.useremail }</p>
+      </div>
+      <div className="message">
+        <p>{ post.writeup }</p>
+      </div>
+    </div>
+  );
+};
 
-// export default Post;
+export default Post;

@@ -10,7 +10,6 @@ const Navbar = () => {
 
   const LogOut = async () => {
     signOut(auth);
-    alert("User signed Out");
   };
 
   return (

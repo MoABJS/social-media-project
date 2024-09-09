@@ -140,6 +140,29 @@ form {
   padding: 5px;
 }
 
+.post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 50%;
+  margin: 20px auto;
+  padding: 10px;
+  box-shadow: 0 0 2px #feffff;
+  background-color: #2b7a7b;
+  color: #def2f1;
+  border-radius: 8px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0;
+  color: #17252a;
+}
+
 
 @media screen and (max-width: 500px) {
  .sign-up, .sign-in {
