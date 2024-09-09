@@ -57,7 +57,7 @@ const SignUp = () => {
         <button>Sign Up</button>
       </form>
       <Link to="/sign-in">
-        <h4>Sign In</h4>
+        Sign In
       </Link>
     </div>
   );

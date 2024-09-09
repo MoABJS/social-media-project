@@ -12,11 +12,11 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--themainbackground);
 }
 
 body {
   text-align: center;
+  background-color: var(--themainbackground);
 }
 
 button:hover {
@@ -54,7 +54,7 @@ a {
   border-radius: 50%;
 }
 
-.links a, .home a {
+.links a, .home a, a {
     margin-left: 25px;
     text-decoration: none;
     color: #def2f1;
@@ -80,7 +80,14 @@ a {
   margin: 10px;
 }
 
-.sign-up, .sign-in {
+.home button {
+  background-color: #17252a ;
+  color: #def2f1;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.sign-up, .sign-in, .create-post {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,6 +98,8 @@ a {
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 0 5px black;
+  background-color: #2b7a78;
+  color: #feffff;
 
 }
 
@@ -108,7 +117,7 @@ form {
   padding: 5px;
 }
 
-.sign-up button, .sign-up a, .sign-in button {
+.sign-up button, .sign-up a, .sign-in button, .create-post button {
   margin: 8px;
   width: 70%;
   font-size: 15px;
@@ -120,6 +129,14 @@ form {
   margin: 8px;
   width: 70%;
   font-size: 15px;
+  padding: 5px;
+}
+
+.create-post textarea {
+  display: block;
+  width: 70%;
+  height: 150px;
+  margin: 5px auto;
   padding: 5px;
 }
 

@@ -19,13 +19,12 @@ const Navbar = () => {
         <>
           <div className="links">
             <Link to="/">Home</Link>
-            <Link to="/">Create Post</Link>
+            <Link to="/create-post">Create Post</Link>
             <button onClick={LogOut}>Log Out</button>
           </div>
           <div className="profile">
           <p>{user?.email}</p>
-          { (user.photoURL) == null ? <img src={user.photoURL || ''} width="60" height="60"/> :
-          <CgProfile style={{width: "60", height: "60"}}/>}
+          { (user.photoURL) == null ? <CgProfile style={{width: "60", height: "60"}}/> : <img src={user.photoURL || ''} width="60" height="60"/> }
           </div>
         </>
       ) : (
