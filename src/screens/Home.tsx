@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { auth, db } from "../config/firebase"
 import { useAuthState } from "react-firebase-hooks/auth"
-import { collection, getDocs, deleteDoc, doc, query, where } from "firebase/firestore"
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { CgProfile } from "react-icons/cg";
 import { SlDislike } from "react-icons/sl";
@@ -25,20 +25,16 @@ const Home = () => {
 
     const [postLists, setPostLists] = useState<Posts[] | null>(null);
     const postsRef = collection(db, "posts");
-  
-    const getPosts = async () => {
-      const data = await getDocs(postsRef);
-      setPostLists(
-        data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Posts[]
-      );
-    };
 
-    const deletePost = async (id: string, userId: string) => {
+
+    const deletePost = async (id: string) => {
       try {
-        const queryUserPosts = query(postsRef, where("userId", "==", userId))
-        const userPosts = await getDocs(queryUserPosts)
+        // const queryUserPosts = query(postsRef, where("userId", "==", userId))
+        // const userPosts = await getDocs(queryUserPosts)
+        // const postToDelete = userPosts.docs.filter((doc) => doc.id === id);
+        // console.log(postToDelete)
         await deleteDoc(doc(db, "posts", id));
-        setPostLists((prev) => prev && prev.filter((post) => post.id !== userPosts.docs[0].id ))
+        setPostLists((prev) => prev && prev.filter((post) => post.id !== id))
       
         console.log("Post deleted");
       } catch (err) {
@@ -46,11 +42,18 @@ const Home = () => {
       }
     };
   
-    const likePost = async () => {};
+    // const likePost = async () => {};
   
-    const disLikePost = async () => {};
+    // const disLikePost = async () => {};
   
     useEffect(() => {
+      const getPosts = async () => {
+        const data = await getDocs(postsRef);
+        setPostLists(
+          data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Posts[]
+        );
+      };
+
       getPosts();
     }, []);
 
@@ -73,13 +76,13 @@ const Home = () => {
                   <p>{post.writeup}</p>
                 </div>
                 <div className="footer">
-                  <button onClick={likePost}>
+                  <button >
                     <SlLike />
                   </button>
-                  <button onClick={disLikePost}>
+                  <button >
                     <SlDislike />
                   </button>
-                  <button onClick={() => deletePost(post.id, post.userId)}>
+                  <button onClick={() => deletePost(post.id)}>
                     <RiDeleteBin7Line />
                   </button>
                 </div>
